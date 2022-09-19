@@ -1,0 +1,105 @@
+.div-card {
+    background-color: #283142;
+    border-radius: 10px;
+    padding: 30px 10px;
+}
+
+.titulo-vendas {
+    color: #676FFF;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.container-input-form-vendas {
+    margin-bottom: 16px;
+    max-width: 300px;
+}
+
+.input-form-vendas {
+    width: 100%;
+    height: 46px;
+    background-color: #1B2531;
+    border: 1px solid #384459;
+    border-radius: 5px;
+    color: #9AAABE;
+    padding: 0 20px;
+    font-size: 18px;
+}
+
+
+/*Conteudo da tabela*/
+
+.tabela-vendas {
+    width: 100%;
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+
+.tabela-vendas thead {
+    height: 55px;
+    font-size: 16px;
+    color: #E9E9E9;
+    font-weight: 700;
+}
+
+.tabela-vendas tbody {
+    font-size: 14px;
+    height: 74px;
+    color: #CFCFCF;
+    font-weight: 400;
+    text-align: center;
+}
+
+.tabela-vendas tbody tr {
+    height: 74px;
+    /*background-color: #283142;*/
+    border-top: 1px solid #5F6E82;
+}
+
+.tabela-vendas tbody tr:hover>td {
+    background-color: #384459;
+}
+
+.tabela-vendas tbody tr:nth-child(odd) {
+    background-color: #242C3B;
+}
+
+
+/*Botão da tabela*/
+
+.tabela-vendas-btn-red-container {
+    display: flex;
+    justify-content: center;
+}
+
+
+/*Definindo o que vai ser mostrado de acordo com o tamanho da tela*/
+
+.mostrar576 {
+    display: none;
+}
+
+.mostrar992 {
+    display: none;
+}
+
+@media(min-width: 576px) {
+    .mostrar576 {
+        display: table-cell;
+    }
+    .div-card {
+        padding: 35px;
+    }
+    .tabela-vendas tbody tr {
+        height: 55px;
+    }
+    .tabela-vendas tbody {
+        font-size: 18px;
+    }
+}
+
+@media(min-width: 992px) {
+    .mostrar992 {
+        display: table-cell;
+    }
+}
