@@ -4,6 +4,8 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { BASE_URL } from '../../utils/request';
+import { Sale } from '../../models/sale';
 
 function VendasCard() {
 
@@ -13,12 +15,14 @@ function VendasCard() {
     const [minDate, setMinDate] = useState(min);
     const [maxDate, setMaxDate] = useState(max);
 
+    const [sales, setSales] = useState<Sale[]>([]);
+
     useEffect(() => {
-        axios.get("http://localhost:8080/sales")
-        .then(response => {
-            console.log(response.data);
-        });
-    },[]);
+        axios.get(`${BASE_URL}/sales`)
+            .then(response => {
+                setSales(response.data.content);
+            });
+    }, []);
 
     return (
         <>
@@ -57,58 +61,23 @@ function VendasCard() {
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td className="mostrar992">#374</td>
-                                <td className="mostrar576">14/08/2022</td>
-                                <td>Anna Thays</td>
-                                <td className="mostrar992">15</td>
-                                <td className="mostrar992">21</td>
-                                <td>R$ 55300.00</td>
-                                <td>
-                                    <div className="tabela-vendas-btn-red-container">
-                                        <NotificacaoBotao />
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td className="mostrar992">#366</td>
-                                <td className="mostrar576">22/08/2022</td>
-                                <td>Renan Barbosa</td>
-                                <td className="mostrar992">12</td>
-                                <td className="mostrar992">08</td>
-                                <td>R$ 47978.00</td>
-                                <td>
-                                    <div className="tabela-vendas-btn-red-container">
-                                        <NotificacaoBotao />
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td className="mostrar992">#341</td>
-                                <td className="mostrar576">08/08/2022</td>
-                                <td>Psita da Silva</td>
-                                <td className="mostrar992">21</td>
-                                <td className="mostrar992">30</td>
-                                <td>R$ 60000.00</td>
-                                <td>
-                                    <div className="tabela-vendas-btn-red-container">
-                                        <NotificacaoBotao />
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td className="mostrar992">#341</td>
-                                <td className="mostrar576">08/08/2022</td>
-                                <td>Fátima Cristina Lima</td>
-                                <td className="mostrar992">06</td>
-                                <td className="mostrar992">18</td>
-                                <td>R$ 57428.13</td>
-                                <td>
-                                    <div className="tabela-vendas-btn-red-container">
-                                        <NotificacaoBotao />
-                                    </div>
-                                </td>
-                            </tr>
+                            {sales.map(sale => {
+                                return (
+                                <tr key={sale.id}>
+                                    <td className="mostrar992">{sale.id}</td>
+                                    <td className="mostrar576">{new Date(sale.date).toLocaleDateString()}</td>
+                                    <td>{sale.sellerName}</td>
+                                    <td className="mostrar992">{sale.visited}</td>
+                                    <td className="mostrar992">{sale.deals}</td>
+                                    <td>R$ {sale.amount.toFixed(2)}</td>
+                                    <td>
+                                        <div className="tabela-vendas-btn-red-container">
+                                            <NotificacaoBotao />
+                                        </div>
+                                    </td>
+                                </tr>)
+                            })}
+
                         </tbody>
 
                     </table>
