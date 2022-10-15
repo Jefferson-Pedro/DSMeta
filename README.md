@@ -76,6 +76,8 @@ No Terminal/Console:
 
 <h3>Este projeto está hospedado na Netfly com o backEnd hospedado no Heroku, confira abaixo: </h3>
 <h3>👉 https://dsmeta-jeffersonpedro.netlify.app/</h3>
+ <img src="https://github.com/Jefferson-Pedro/DSMeta/blob/main/dsmeta.png" alt="DSMeta Site"/>
+	
 
 <h3>Autor</h3>
 
